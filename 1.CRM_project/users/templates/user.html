@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>user page</h2>
+
+    <form action="{{url_for('search_user')}}">
+        <input type="text" name="name" placeholder="사용자 이름을 검색하세요">
+        <button type="submit">검색</button>
+    </form>
+    <br>
+    <table border = 1>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Birthdate</th>
+            <th>Address</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <th>{{user.Id}}</th>
+            <th>{{user.Name}}</th>
+            <th>{{user.Gender}}</th>
+            <th>{{user.Age}}</th>
+            <th>{{user.Birthdate}}</th>
+            <th>{{user.Address}}</th>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+    
+    <div>
+    {% if page_now > 1 %}
+        <a href="/?page={{page_now - 1}}">PREVIOUS |</a>
+    {% else %}
+        PREVIOUS 
+    {% endif %}
+        
+    {% if page_now < div  %}
+        <a href="/?page={{page_now + 1}}">NEXT</a>
+    {% elif  (page_now == div) and mod == 0 %}
+        NEXT
+    {% elif  (page_now == div) and mod != 0 %}
+        <a href="/?page={{page_now + 1}}">NEXT</a>
+    {% else %}
+        NEXT
+    {% endif %}
+    </div>
+</body>
+</html>
