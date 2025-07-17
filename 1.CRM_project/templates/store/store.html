@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %} stores {% endblock %}
+
+{% block header %}<h2>store page</h2>{% endblock %}
+
+
+{% block content %}                    
+    <table border = 1>
+        <tr>
+            <th>Id</th>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Address</th>
+        </tr>
+        {% for store in stores %}
+        <tr>
+            <th>{{store.Id}}</th>
+            <th>{{store.Type}}</th>
+            <th>{{store.Name}}</th>
+            <th>{{store.Address}}</th>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
+    
+
+{% block pagination %}
+    <div>
+    {% if page_now > 1 %}
+        <a href="{{url_for('store.index', page=page_now -1 )}}">PREVIOUS |</a>
+    {% else %}
+        PREVIOUS
+    {% endif %}
+        
+    {% for i in range(-2,3) %}
+        {% set page_num = page_now + i %}
+            {% if ( 1 <= page_num <= div ) %}
+                <a href="{{url_for('store.index', page=page_num )}}">{{page_num}}</a>
+            {% elif (page_num == div+1) and mod != 0 %}
+                <a href="{{url_for('store.index', page=page_num )}}">{{page_num}}</a>
+            {% endif %}
+    {% endfor %}
+
+    {% if page_now < div  %}
+        <a href="{{url_for('store.index', page=page_now +1 )}}">NEXT</a>
+    {% elif  (page_now == div) and mod == 0 %}
+        NEXT
+    {% elif  (page_now == div) and mod != 0 %}
+        <a href="{{url_for('store.index', page=page_now + 1)}}">NEXT</a>
+    {% else %}
+        NEXT
+    {% endif %}
+    </div>
+{% endblock %}

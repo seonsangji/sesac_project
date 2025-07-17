@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}search{% endblock %}
+
+{% block header %}<h2>user page</h2>{% endblock %}
+
+{% block content %}
+    <form action="{{url_for('user.search_user')}}">
+        <input type="text" name="name" placeholder="사용자 이름을 검색하세요" value="{{name}}">
+        <select name="gender">
+            <option value="" disabled selected>성별 선택</option>
+            <option value="male">male</option>
+            <option value="female">female</option>
+        </select>
+        <button type="submit">검색</button>
+    </form>
+
+    <table border = 1>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Birthdate</th>
+            <th>Address</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <th>{{user.Id}}</th>
+            <th>{{user.Name}}</th>
+            <th>{{user.Gender}}</th>
+            <th>{{user.Age}}</th>
+            <th>{{user.Birthdate}}</th>
+            <th>{{user.Address}}</th>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
+
+{% block pagination %}
+    <div>
+    {% if page_now > 1 %}
+        <a href="{{url_for('user.search_user', name=name, page=page_now -1)}}">PREVIOUS |</a>
+    {% else %}
+        PREVIOUS 
+    {% endif %}
+        
+    {% for i in range(-2,3) %}
+        {% set page_num = page_now + i %}
+            {% if ( 1 <= page_num <= div ) %}
+                <a href="{{url_for('user.search_user', name=name, page=page_num )}}">{{page_num}}</a>
+            {% elif (page_num == div+1) and mod != 0 %}
+                <a href="{{url_for('user.search_user', name=name, page=page_num )}}">{{page_num}}</a>
+            {% endif %}
+    {% endfor %}
+
+    {% if page_now < div  %}
+        <a href="{{url_for('user.search_user', name=name, page=page_now +1)}}">NEXT</a>
+    {% elif  (page_now == div) and mod == 0 %}
+        NEXT
+    {% elif  (page_now == div) and mod != 0 %}
+        <a href="{{url_for('user.search_user', name=name, page=page_now +1)}}">NEXT</a>
+    {% else %}
+        NEXT
+    {% endif %}
+    </div>
+{% endblock %}

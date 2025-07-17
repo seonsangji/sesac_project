@@ -1,19 +1,8 @@
 import sqlite3, os
 
-# def find_project_root(filename='mycrm.db'):
-#     current_dir = os.path.abspath(__file__)
-#     while True:
-#         current_dir = os.path.dirname(current_dir)
-#         if os.path.exists(os.path.join(current_dir, filename)):
-#             return current_dir
-#         if current_dir == os.path.dirname(current_dir):  # 루트 디렉토리까지 올라간 경우
-#             raise FileNotFoundError(f"'{filename}' not found in any parent directory.")
-
-# PROJECT_ROOT = find_project_root()
-# DATABASE = os.path.join(PROJECT_ROOT, 'mycrm.db')
-
-DATABASE = '../mycrm.db'
-
+filepath_now = os.path.abspath(__file__)
+BASE_DIR = os.path.dirname(os.path.dirname(filepath_now))
+DATABASE = os.path.join(BASE_DIR, 'mycrm.db')
 
 def get_connection():
     conn = sqlite3.connect(DATABASE)

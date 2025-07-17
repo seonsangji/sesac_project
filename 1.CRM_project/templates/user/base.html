@@ -18,15 +18,7 @@
     {% block header %}{% endblock %}
 
 
-    <form action="{{url_for('search_user')}}">
-        <input type="text" name="name" placeholder="사용자 이름을 검색하세요" value="{{name}}">
-        <select name="gender">
-            <option value="" disabled selected>성별 선택</option>
-            <option value="male">male</option>
-            <option value="female">female</option>
-        </select>
-        <button type="submit">검색</button>
-    </form>
+    
     
     {% block content %}{% endblock %}
 

@@ -1,18 +1,20 @@
-from flask import Flask, render_template, request, redirect, url_for
-import database as db
-from get_and_count_page import count_user_per_page
+from flask import Blueprint, render_template, request, redirect, url_for
+from . import database as db
+from common.count_row import count_row_per_page
+from common.get_page import get_page_now
 
-app = Flask(__name__)
+user_bp = Blueprint('user', __name__, template_folder='../templates/user' )
 
-@app.route('/')
+@user_bp.route('/')
 def index():
-    total_user = db.get_user_count()
+    total = db.get_user_count()
     users_per_page = 10
-    div, mod, page_now = count_user_per_page(total_user, users_per_page)    
+    div, mod = count_row_per_page(total, users_per_page) 
+    page_now = get_page_now()   
     users = db.get_users_per_page(page_now, users_per_page)
     return render_template('user.html', users=users, div=div, mod=mod, page_now=page_now)
 
-@app.route('/search')
+@user_bp.route('/search')
 def search_user():
     name = request.args.get('name', default='', type=str).strip()
     if (len(name) == 1) or (len(name) == 3):
@@ -32,14 +34,11 @@ def search_user():
 
     search_result_count = len(search_result)
     users_per_page = 10
-    div, mod, page_now = count_user_per_page(search_result_count, users_per_page)
+    div, mod = count_row_per_page(search_result_count, users_per_page)
+    page_now = get_page_now()
     users = search_result[(page_now-1)*users_per_page:page_now*users_per_page]
 
     return render_template('search.html', users = users, div = div, mod = mod, page_now=page_now, name=name)
     
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
     
     
