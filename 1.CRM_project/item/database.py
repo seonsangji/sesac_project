@@ -17,3 +17,11 @@ def get_items():
     total_items = [dict(r) for r in rows]
     cur.close()
     return total_items
+
+def get_item_info(id):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM items WHERE Id=?', (id,))
+    item_dict = dict(cur.fetchone())
+    cur.close()
+    return item_dict

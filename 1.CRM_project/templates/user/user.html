@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %} users {% endblock %}
+{% block title %} user {% endblock %}
 
 {% block header %}<h2>user page</h2>{% endblock %}
 
@@ -27,7 +27,11 @@
         </tr>
         {% for user in users %}
         <tr>
-            <th>{{user.Id}}</th>
+            <th>
+                <a href="{{url_for('user.get_user_detail', userId=user.Id)}}">
+                    {{user.Id}}
+                </a>
+            </th>
             <th>{{user.Name}}</th>
             <th>{{user.Gender}}</th>
             <th>{{user.Age}}</th>
@@ -42,23 +46,33 @@
 
 {% block pagination %}
     <div>
-    {% if page_now > 1 %}
-        <a href="{{url_for('user.index', page=page_now -1 )}}">PREVIOUS |</a>
+    {% if 1<page_now <= total_page %}
+        <a href="{{url_for('user.index', page=page_now -1)}}">Previous</a>
     {% else %}
-        PREVIOUS 
+        Previous
     {% endif %}
-        
-    {% for i in range(-2,3) %}
-        {% set page_num = page_now + i %}
-            {% if ( 1 <= page_num <= total_page ) %}
-                <a href="{{url_for('user.index', page=page_num )}}">{{page_num}}</a>
-            {% endif %}
+    
+    {% if page_now <= 2 %}
+        {% set start=1 %}
+        {% set stop=6 %}
+    {% elif total_page-1<=page_now==total_page %}
+        {% set start=total_page-4 %}
+        {% set stop=total_page+1 %}
+    {% else %}
+        {% set start=page_now-2 %}
+        {% set stop=page_now+3 %}
+    {% endif %}       
+     
+    {% for i in range(start,stop) %}
+        {% if 0<i<=total_page+1 %}
+            <a href="{{url_for('user.index', page=i)}}">{{i}}</a>
+        {% endif %}
     {% endfor %}
 
-    {% if 1<= page_now < total_page %}
-        <a href="{{url_for('user.index', page=page_now +1 )}}">Next</a>
+    {% if page_now < total_page %}
+        <a href="{{url_for('user.index', page=page_now+1)}}">Next</a>
     {% else %}
-        NEXT
+        Next
     {% endif %}
     </div>
 {% endblock %}

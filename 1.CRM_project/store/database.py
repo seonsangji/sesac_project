@@ -27,5 +27,14 @@ def get_stores_per_page(page, limit):
     cur.close()
     return stores
 
+def get_store_info(id):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM stores WHERE Id=?', (id,))
+    store_dict = dict(cur.fetchone())
+    cur.close()
+    return store_dict
+
+
 
     

@@ -16,8 +16,8 @@ def get_order_count():
     cur.close()
     return total
 
-def get_orders_per_page(total, limit):
-    offset = (total - 1) * limit
+def get_orders_per_page(page, limit):
+    offset = (page - 1) * limit
     conn = get_connection()
     cur = conn.cursor()
     cur.execute('SELECT * FROM orders LIMIT ? OFFSET ?', (limit, offset))

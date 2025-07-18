@@ -38,7 +38,12 @@ def search_user():
     page_now = get_page_now()
     users = search_result[(page_now-1)*limit:page_now*limit]
 
-    return render_template('search.html', users = users,  total_page=total_page, page_now=page_now, name=name, gender=gender)
+    return render_template('user/search.html', users = users,  total_page=total_page, page_now=page_now, name=name, gender=gender)
+
+@user_bp.route('/detail/<string:userId>')
+def get_user_detail(userId):
+    user_dict = db.get_user_info(userId)
+    return render_template('user/detail.html', user=user_dict)
     
     
     

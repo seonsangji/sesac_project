@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}item detail{% endblock %}
+
+{% block header %}<h2>item detail page</h2>{% endblock %}
+
+{% block content %}
+    <table>
+        <tr>
+            {% for key, value in item.items() %}
+                {% if key == 'Name' or key == 'UnitPrice' %}
+                    <th>{{key}}</th>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for key, value in item.items() %}
+                {% if key == 'Name' or key == 'UnitPrice' %}
+                    <th>{{value}}</th>
+                {% endif %}
+            {% endfor %}
+        </tr>
+    </table>
+{% endblock %}

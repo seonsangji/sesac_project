@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}store detail{% endblock %}
+
+{% block header %}<h2>store detail page</h2>{% endblock %}
+
+{% block content %}
+    <table>
+        <tr>
+            {% for key,value in store.items() %}
+                {% if key != 'Id' %}
+                    <th>{{key}}</th>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for key,value in store.items() %}
+                {% if key != 'Id' %}
+                    <td>{{value}}</td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+    </table>
+{% endblock %}

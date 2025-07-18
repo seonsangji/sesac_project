@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block title %} stores {% endblock %}
 
@@ -15,7 +15,7 @@
         </tr>
         {% for store in stores %}
         <tr>
-            <th>{{store.Id}}</th>
+            <th><a href="{{url_for('store.get_store_detail', storeId=store.Id)}}">{{store.Id}}</a></th>
             <th>{{store.Type}}</th>
             <th>{{store.Name}}</th>
             <th>{{store.Address}}</th>

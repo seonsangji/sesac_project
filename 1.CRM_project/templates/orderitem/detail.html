@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}orderitem detail{% endblock %}
+
+{% block header %}<h2>orderitem detail page</h2>{% endblock %}
+
+{% block content %}
+<table>
+    <tr>
+        <th>Id</th>
+        <th>OrderId</th>
+        <th>ItemId</th>
+        <th>ItemName</th>       
+    </tr>
+    {% for orderitem in orderitems %}
+        <tr>
+            {% for value in orderitem.values() %}
+                <th>{{value}}</th>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -26,7 +26,11 @@
         </tr>
         {% for user in users %}
         <tr>
-            <th>{{user.Id}}</th>
+            <th>
+                <a href="{{url_for('user.get_user_detail', userId=user.Id)}}">
+                    {{user.Id}}
+                </a>
+            </th>
             <th>{{user.Name}}</th>
             <th>{{user.Gender}}</th>
             <th>{{user.Age}}</th>
@@ -45,7 +49,7 @@
         {% else %}
             Previous
         {% endif %}
-    
+
         {% if page_now <= 2 %}
             {% set start=1 %}
             {% set stop=6 %}
@@ -55,8 +59,8 @@
         {% else %}
             {% set start=page_now-2 %}
             {% set stop=page_now+3 %}
-        {% endif %}
-                
+        {% endif %}               
+
         {% for i in range(start,stop) %}
             {% if 0<i<=total_page+1 %}
                 <a href="{{url_for('user.search_user', name=name, gender=gender, page=i)}}">{{i}}</a>

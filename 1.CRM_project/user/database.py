@@ -17,8 +17,8 @@ def get_user_count():
     cur.close()
     return total
 
-def get_users_per_page(total, limit):
-    offset = ( total - 1 ) * limit
+def get_users_per_page(page, limit):
+    offset = ( page - 1 ) * limit
     conn = get_connection()
     cur = conn.cursor()
     cur.execute('SELECT * FROM users LIMIT ? OFFSET ? ', (limit, offset))
@@ -44,6 +44,16 @@ def search_lastname(name):
     users = [ dict(r) for r in rows ]
     cur.close()
     return users
+
+def get_user_info(id):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM users WHERE Id=?', (id,))
+    user_dict = dict(cur.fetchone())
+    cur.close()
+    return user_dict
+
+    
 
 
     

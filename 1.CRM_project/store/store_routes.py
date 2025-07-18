@@ -13,3 +13,8 @@ def index():
     page_now = get_page_now()
     stores = db.get_stores_per_page(page_now, limit)
     return render_template('store.html', stores=stores, total_page=total_page, page_now=page_now)
+
+@store_bp.route('/detail/<string:storeId>')
+def get_store_detail(storeId):
+    store_dict = db.get_store_info(storeId)
+    return render_template('store/detail.html', store=store_dict)

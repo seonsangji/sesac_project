@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}user detail {% endblock %}
+
+{% block header %}user detail page{% endblock %}
+
+{% block content %}
+    <table>
+        <tr>
+            {% for key, value in user.items() %}
+                {% if key != 'Id' %}
+                    <th>{{key}}</th>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for key, value in user.items() %}
+                {% if key != 'Id' %}
+                    <td>{{value}}</td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+    </table>
+{% endblock %}

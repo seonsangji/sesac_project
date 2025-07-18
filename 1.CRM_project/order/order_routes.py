@@ -11,8 +11,8 @@ def index():
     limit = 10
     total_page = count_row_per_page(total, limit)
     page_now = get_page_now()
-    items = db.get_orders_per_page(page_now,limit)
-    return render_template('order.html', items=items, total_page=total_page, page_now=page_now)
+    orders = db.get_orders_per_page(page_now,limit)
+    return render_template('order.html', orders=orders, total_page=total_page, page_now=page_now)
 
     
      
