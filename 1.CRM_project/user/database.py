@@ -13,15 +13,15 @@ def get_user_count():
     conn = get_connection()
     cur = conn.cursor()
     cur.execute('SELECT COUNT(*) FROM users')
-    total_user = cur.fetchone()[0]
+    total = cur.fetchone()[0]
     cur.close()
-    return total_user
+    return total
 
-def get_users_per_page(page, count):
-    offset = ( page - 1 ) * count
+def get_users_per_page(total, limit):
+    offset = ( total - 1 ) * limit
     conn = get_connection()
     cur = conn.cursor()
-    cur.execute('SELECT * FROM users LIMIT ? OFFSET ? ', (count, offset))
+    cur.execute('SELECT * FROM users LIMIT ? OFFSET ? ', (limit, offset))
     rows = cur.fetchall()
     users = [ dict(r) for r in rows ]
     cur.close()

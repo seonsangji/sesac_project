@@ -8,8 +8,8 @@ store_bp = Blueprint('store', __name__, template_folder='../templates/store')
 @store_bp.route('/')
 def index():
     total = db.get_store_count()
-    stores_per_page = 10
-    div, mod = count_row_per_page(total, stores_per_page) 
+    limit = 10
+    total_page = count_row_per_page(total, limit) 
     page_now = get_page_now()
-    stores = db.get_stores_per_page(page_now, stores_per_page)
-    return render_template('store.html', stores=stores, div=div, mod=mod, page_now=page_now)
+    stores = db.get_stores_per_page(page_now, limit)
+    return render_template('store.html', stores=stores, total_page=total_page, page_now=page_now)

@@ -17,11 +17,11 @@ def get_store_count():
     cur.close()
     return total
 
-def get_stores_per_page(page, count):
-    offset = ( page - 1 ) * count
+def get_stores_per_page(page, limit):
+    offset = ( page - 1 ) * limit
     conn = get_connection()
     cur = conn.cursor()
-    cur.execute('SELECT * FROM stores LIMIT ? OFFSET ? ', (count, offset))
+    cur.execute('SELECT * FROM stores LIMIT ? OFFSET ? ', (limit, offset))
     rows = cur.fetchall()
     stores = [ dict(r) for r in rows ]
     cur.close()

@@ -1,0 +1,58 @@
+{% block title %}order{% endblock %}
+
+{% block header %}<h2>order page</h2>{% endblock %}
+
+{% block content %}
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>OrderAt</th>
+            <th>StoreId</th>
+            <th>UserId</th>
+        </tr>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.Id }}</td>
+            <td>{{ order.OrderAt }}</td>
+            <td>{{ order.StoreId }}</td>
+            <td>{{ order.UserId }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
+{% block pagination %}
+<div>
+    {% if 1<page_now<=total_page %}
+        <a href="{{url_for('order.index', page=page_now -1)}}">Previous</a>
+    {% else %}
+        Previous
+    {% endif %}
+
+    
+    {% if page_now <= 2 %}
+        {% set start=1 %}
+        {% set stop=6 %}
+    {% elif total_page-1<=page_now==total_page %}
+        {% set start=total_page-4 %}
+        {% set stop=total_page %}
+    {% else %}
+        {% set start=page_now-2 %}
+        {% set stop=page_now+3 %}
+    {% endif %}
+        
+     
+    {% for i in range(start,stop) %}
+        {% if 0<i<=total_page %}
+            <a href="{{url_for('order.index', page=i)}}">{{i}}</a>
+        {% endif %}
+    {% endfor %}
+
+            
+    {% if page_now < total_page %}
+        <a href="url_for('order.index', page=page_now+1)">Next</a>
+    {% else %}
+        Next
+    {% endif %}
+</div>   
+{% endblock %}

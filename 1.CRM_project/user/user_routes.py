@@ -8,11 +8,11 @@ user_bp = Blueprint('user', __name__, template_folder='../templates/user' )
 @user_bp.route('/')
 def index():
     total = db.get_user_count()
-    users_per_page = 10
-    div, mod = count_row_per_page(total, users_per_page) 
+    limit = 10
+    total_page = count_row_per_page(total, limit) 
     page_now = get_page_now()   
-    users = db.get_users_per_page(page_now, users_per_page)
-    return render_template('user.html', users=users, div=div, mod=mod, page_now=page_now)
+    users = db.get_users_per_page(page_now, limit)
+    return render_template('user.html', users=users,  total_page=total_page,page_now=page_now)
 
 @user_bp.route('/search')
 def search_user():
@@ -32,13 +32,13 @@ def search_user():
     elif gender == 'female':
         search_result = [r for r in search_result if r['Gender'] == 'Female']
 
-    search_result_count = len(search_result)
-    users_per_page = 10
-    div, mod = count_row_per_page(search_result_count, users_per_page)
+    search_result_total = len(search_result)
+    limit = 10
+    total_page = count_row_per_page(search_result_total, limit)
     page_now = get_page_now()
-    users = search_result[(page_now-1)*users_per_page:page_now*users_per_page]
+    users = search_result[(page_now-1)*limit:page_now*limit]
 
-    return render_template('search.html', users = users, div = div, mod = mod, page_now=page_now, name=name)
+    return render_template('search.html', users = users,  total_page=total_page, page_now=page_now, name=name, gender=gender)
     
     
     
