@@ -14,8 +14,12 @@
         {% for orderitem in orderitems %}
         <tr>
             <td>{{orderitem.Id}}</td>
-            <td>{{orderitem.OrderId}}</td>
-            <td>{{orderitem.ItemId}}</td>
+            <td>
+                <a href="{{url_for('order.get_order_detail', orderId=orderitem.OrderId)}}">{{orderitem.OrderId}}</a>               
+            </td>
+            <td>
+                <a href="{{url_for('item.get_item_detail', itemId=orderitem.ItemId)}}">{{orderitem.ItemId}}</a>               
+            </td>
         </tr>
         {% endfor %}
     </table>

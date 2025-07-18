@@ -13,11 +13,16 @@
         <th>ItemName</th>       
     </tr>
     {% for orderitem in orderitems %}
-        <tr>
-            {% for value in orderitem.values() %}
-                <th>{{value}}</th>
-            {% endfor %}
-        </tr>
+    <tr>
+        <th>{{orderitem.Id}}</th>
+        <th>
+            <a href="{{url_for('order.get_order_detail', orderId=orderitem.OrderId)}}">{{orderitem.OrderId}}</a> 
+        </th>
+        <th>
+            <a href="{{url_for('item.get_item_detail', itemId=orderitem.ItemId)}}">{{orderitem.ItemId}}</a>            
+        </th>
+        <th>{{orderitem.Name}}</th>
+    </tr>
     {% endfor %}
 </table>
 {% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}order detail{% endblock %}
+
+{% block header %}<h2>order detail page</h2>{% endblock %}
+
+{% block content %}
+    <table>
+        <tr>
+            <th>OrderId</th>
+            <th>OrderAt</th>
+            <th>StoreId</th>
+            <th>UserId</th>
+        </tr> 
+        <tr>
+            <th>{{order.Id}}</th>
+            <th>{{order.OrderAt}}</th>
+            <th>
+                <a href="{{url_for('store.get_store_detail', storeId=order.StoreId)}}">
+                {{order.StoreId}}
+                </a>
+            </th>
+            <th>
+                <a href="{{url_for('user.get_user_detail', userId=order.UserId)}}">
+                {{order.UserId}}
+                </a>
+            </th>
+        </tr>
+    </table>
+{% endblock %}

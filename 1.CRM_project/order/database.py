@@ -25,3 +25,11 @@ def get_orders_per_page(page, limit):
     orders = [dict(r) for r in rows]
     cur.close()
     return orders
+
+def get_order_info(id):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM orders WHERE Id = ?', (id,))
+    order = dict(cur.fetchone())
+    cur.close()
+    return order

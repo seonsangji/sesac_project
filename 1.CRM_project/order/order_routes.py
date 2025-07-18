@@ -14,5 +14,10 @@ def index():
     orders = db.get_orders_per_page(page_now,limit)
     return render_template('order.html', orders=orders, total_page=total_page, page_now=page_now)
 
+@order_bp.route('/detail/<string:orderId>')
+def get_order_detail(orderId):
+    order_dict = db.get_order_info(orderId)
+    return render_template('order/detail.html', order=order_dict)
+
     
      
