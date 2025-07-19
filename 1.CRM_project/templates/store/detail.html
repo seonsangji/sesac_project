@@ -21,4 +21,34 @@
             {% endfor %}
         </tr>
     </table>
+
+    <table>
+        <tr>
+            <th>Month</th>
+            <th>Revenue</th>
+            <th>Count</th>
+        </tr>
+        {% for row in rev %}
+            <tr>
+                <td><a href="">{{row.Month}}</a></td>
+                <td>{{row.rev}}</td>
+                <td>{{row.OrderitemCount}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <table>
+        <tr>
+            <th>UserId</th>
+            <th>Name</th>
+            <th>Frequency</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <th><a href="{{url_for('user.get_user_detail', userId=user.UserId)}}">{{user.UserId}}</a></th>
+            <th>{{user.UserName}}</th>
+            <th>{{user.Frequency}}</th>
+        </tr>
+        {% endfor %}
+    </table>
 {% endblock %}

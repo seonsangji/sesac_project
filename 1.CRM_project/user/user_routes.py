@@ -43,7 +43,10 @@ def search_user():
 @user_bp.route('/detail/<string:userId>')
 def get_user_detail(userId):
     user_dict = db.get_user_info(userId)
-    return render_template('user/detail.html', user=user_dict)
-    
+    order_dict = db.get_order_info_by_userId(userId)
+    print(order_dict)
+    return render_template('user/detail.html', user=user_dict, orders=order_dict)
+
+
     
     

@@ -53,6 +53,20 @@ def get_user_info(id):
     cur.close()
     return user_dict
 
+def get_order_info_by_userId(id):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute('''
+        SELECT o.Id, o.OrderAt, o.StoreId FROM orders o
+        JOIN users u ON o.UserId = u.Id
+        WHERE u.Id = ?
+        GROUP BY o.Id
+        ORDER BY o.OrderAt DESC''', (id,))
+    rows = cur.fetchall()
+    order_dict = [dict(r) for r in rows]
+    cur.close()
+    return order_dict
+
     
 
 

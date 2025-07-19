@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 from . import database as db
 from common.count_row import count_row_per_page
 from common.get_page import get_page_now
@@ -17,4 +17,9 @@ def index():
 @store_bp.route('/detail/<string:storeId>')
 def get_store_detail(storeId):
     store_dict = db.get_store_info(storeId)
-    return render_template('store/detail.html', store=store_dict)
+    rev_dict = db.get_store_rev(storeId)
+    user_dict = db.get_user_list_by_storeId(storeId)
+    return render_template('store/detail.html', store=store_dict, rev= rev_dict, users = user_dict)
+
+def get_store_rev_month(storeId):
+    month = request.args.get('rev_month', default='')

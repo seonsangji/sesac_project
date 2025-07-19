@@ -25,3 +25,22 @@ def get_item_info(id):
     item_dict = dict(cur.fetchone())
     cur.close()
     return item_dict
+
+def get_item_rev(id):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute('''SELECT 
+    strftime('%Y-%m', o.OrderAt) AS Month, 
+    SUM(i.unitPrice) AS  TotalRevenue,
+    COUNT(oi.ItemId) AS ItemCount
+    FROM orderitems oi
+    JOIN orders o ON oi.OrderId = o.Id
+    JOIN items i ON oi.ItemId = i.Id
+    WHERE oi.ItemId = ?
+    GROUP BY Month
+    ORDER BY Month 
+    ''', (id,))
+    rows = cur.fetchall()
+    rev_dict = [dict(r) for r in rows]
+    cur.close()
+    return rev_dict

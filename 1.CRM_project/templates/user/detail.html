@@ -21,4 +21,24 @@
             {% endfor %}
         </tr>
     </table>
+    <br>
+    <table>
+        <tr>
+            <th>OrderId</th>
+            <th>Purchased Date</th>
+            <th>Purchased Location</th>
+        </tr>
+        {% for order in orders %}
+        <tr>
+            <td>
+                <a href="{{url_for('orderitem.get_orderitem_detail', orderId=order.Id)}}">{{order.Id}}</a>
+            </td>
+            <td>{{order.OrderAt}}</td>
+            <td>
+                <a href="{{url_for('store.get_store_detail', storeId=order.StoreId)}}">
+                    {{order.StoreId}}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
 {% endblock %}

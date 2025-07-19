@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect
 from . import database as db
 
 item_bp = Blueprint('item', __name__, template_folder='../templates/item')
@@ -11,5 +11,8 @@ def index():
 @item_bp.route('/detail/<string:itemId>')
 def get_item_detail(itemId):
     item_dict = db.get_item_info(itemId)
-    return render_template('item/detail.html', item=item_dict)
+    rev_dict = db.get_item_rev(itemId)
+    return render_template('item/detail.html', item=item_dict, rev=rev_dict)
+
+
     

@@ -21,4 +21,19 @@
             {% endfor %}
         </tr>
     </table>
+    <br>
+    <table>
+            <tr>
+                <th>Month</th>
+                <th>Total Revenue</th>
+                <th>Item Count</th>
+            </tr>
+            {% for row in rev %}
+            <tr>
+                {% for value in row.values() %}
+                    <td>{{value}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+    </table>
 {% endblock %}
