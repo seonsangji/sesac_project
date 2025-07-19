@@ -8,20 +8,16 @@
 </head>
 <body>
     <nav>
-        <a href="#">User</a>
-        <a href="#">Store</a>
-        <a href="#">Item</a>
-        <a href="#">Order</a>
-        <a href="#">OrderItem</a>
+        <a href="{{url_for('user.index')}}">User</a>
+        <a href="{{url_for('store.index')}}">Store</a>
+        <a href="{{url_for('item.index')}}">Item</a>
+        <a href="{{url_for('order.index')}}">Order</a>
+        <a href="{{url_for('orderitem.index')}}">OrderItem</a>
     </nav>
 
     {% block header %}{% endblock %}
-
-
-    
     
     {% block content %}{% endblock %}
 
-    {% block pagination %}{% endblock %}
 </body>
 </html>

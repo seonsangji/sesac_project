@@ -22,6 +22,7 @@
         </tr>
     </table>
 
+
     <table>
         <tr>
             <th>Month</th>
@@ -30,8 +31,12 @@
         </tr>
         {% for row in rev %}
             <tr>
-                <td><a href="">{{row.Month}}</a></td>
-                <td>{{row.rev}}</td>
+                {% if row.Month %}
+                    <td><a href="{{url_for('store.get_store_detail',rev_month=row.Month, storeId=store.Id)}}">{{row.Month}}</a></td>
+                {% elif row.Day %}
+                    <td>{{row.Day}}</td>
+                {% endif %}
+                <td>{{row.Rev}}</td>
                 <td>{{row.OrderitemCount}}</td>
             </tr>
         {% endfor %}

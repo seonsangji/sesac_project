@@ -17,9 +17,14 @@ def index():
 @store_bp.route('/detail/<string:storeId>')
 def get_store_detail(storeId):
     store_dict = db.get_store_info(storeId)
-    rev_dict = db.get_store_rev(storeId)
-    user_dict = db.get_user_list_by_storeId(storeId)
-    return render_template('store/detail.html', store=store_dict, rev= rev_dict, users = user_dict)
 
-def get_store_rev_month(storeId):
-    month = request.args.get('rev_month', default='')
+    rev_month = request.args.get('rev_month', default='')
+
+    if rev_month == '':
+        rev_dict = db.get_store_rev(storeId)
+        user_dict = db.get_user_list_by_storeId(storeId)
+        return render_template('store/detail.html', store=store_dict, rev= rev_dict, users = user_dict)
+    else :
+        rev_month_dict = db.get_store_rev_for_month(rev_month, storeId)
+        user_month_dict = db.get_user_list_by_storeId_for_month(rev_month, storeId) 
+        return render_template('store/detail.html', store=store_dict, rev= rev_month_dict, users = user_month_dict)
