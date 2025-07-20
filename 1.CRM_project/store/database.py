@@ -68,7 +68,8 @@ def get_user_list_by_storeId(id):
         JOIN stores s ON o.StoreId = s.Id
         WHERE s.Id = ?
         GROUP BY u.Id
-        ORDER BY Frequency DESC''', (id,))
+        ORDER BY Frequency DESC
+        LIMIT 10''', (id,))
     rows = cur.fetchall()
     user_dict = [dict(r) for r in rows]
     cur.close()
@@ -105,7 +106,8 @@ def get_user_list_by_storeId_for_month(month, id):
         JOIN users u ON o.UserId = u.Id
         JOIN stores s ON o.StoreId = s.Id
         WHERE s.Id = ? AND strftime('%Y-%m',o.OrderAt) = ?
-        GROUP BY u.Id''',(id, month))
+        GROUP BY u.Id
+        LIMIT 10''',(id, month))
     rows = cur.fetchall()
     user_month_dict = [dict(r) for r in rows]
     cur.close()

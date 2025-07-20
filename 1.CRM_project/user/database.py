@@ -17,6 +17,14 @@ def get_user_count():
     cur.close()
     return total
 
+def get_users():
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM users')
+    total = [dict(r) for r in cur.fetchall()]
+    cur.close()
+    return total
+
 def get_users_per_page(page, limit):
     offset = ( page - 1 ) * limit
     conn = get_connection()
@@ -66,6 +74,40 @@ def get_order_info_by_userId(id):
     order_dict = [dict(r) for r in rows]
     cur.close()
     return order_dict
+
+def get_user_behavior(id):
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute('''
+        SELECT 
+        s.Name AS StoreName,
+        COUNT(s.Id) AS VisitCount
+        FROM orders o 
+        JOIN stores s ON o.StoreId = s.Id
+        JOIN users u ON o.UserId = u.Id
+        WHERE u.Id = ?
+        GROUP BY s.Id
+        ORDER BY VisitCount DESC 
+        LIMIT 5''', (id, ))
+    visit_dict = [dict(row) for row in cur.fetchall()] 
+    cur.execute('''
+        SELECT
+        i.Name AS ItemName,
+        COUNT(oi.Id) AS OrderCount
+        FROM orderitems oi
+        JOIN orders o ON oi.OrderId = o.Id
+        JOIN items i ON oi.ItemId = i.Id
+        JOIN users u ON o.UserId = u.Id
+        WHERE u.Id = ?
+        GROUP BY i.Id
+        ORDER BY OrderCount DESC, ItemName ASC
+        LIMIT 5''', (id,))
+    ordercount_dict = [dict(row) for row in cur.fetchall()]
+    cur.close()
+
+    return visit_dict, ordercount_dict
+
+
 
     
 

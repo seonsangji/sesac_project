@@ -17,14 +17,22 @@ def index():
 @user_bp.route('/search')
 def search_user():
     name = request.args.get('name', default='', type=str).strip()
+    gender = request.args.get('gender', default='')
+
     if (len(name) == 1) or (len(name) == 3):
         search_result = db.search_name_from_front(name) 
     elif len(name) == 2:
         search_result = db.search_name_from_front(name) + db.search_lastname(name)
         if not search_result:  return redirect(url_for('search_user'))
+    elif name == '' and gender != '':
+        if not gender: search_result = []
+        elif gender == 'male':
+            search_result = [r for r in db.get_users() if r['Gender'] == 'Male']
+        elif gender == 'female':
+            search_result = [r for r in db.get_users() if r['Gender'] == 'Female']
     else: search_result = []    
 
-    gender = request.args.get('gender', default='')
+    
     if not gender:
         search_result = search_result
     elif gender == 'male':
@@ -44,8 +52,9 @@ def search_user():
 def get_user_detail(userId):
     user_dict = db.get_user_info(userId)
     order_dict = db.get_order_info_by_userId(userId)
-    print(order_dict)
-    return render_template('user/detail.html', user=user_dict, orders=order_dict)
+    visit_dict, ordercount_dict = db.get_user_behavior(userId)
+    return render_template('user/detail.html', user=user_dict, orders=order_dict, visits = visit_dict, ordercount = ordercount_dict)
+
 
 
     

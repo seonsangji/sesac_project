@@ -41,4 +41,24 @@
         </tr>
         {% endfor %}
     </table>
+
+    <h3>자주 방문한 매장 Top 5</h3>
+    <ul>
+        {% for visit in visits %}
+            <li>
+            {{visit.StoreName}}
+            (방문 횟수: {{visit.VisitCount}})
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h3>자주 주문한 상품명 Top 5</h3>
+    <ul>
+        {% for i in ordercount %}
+            <li>
+            {{i.ItemName}}
+            (주문 개수: {{i.OrderCount}})
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
