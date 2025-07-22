@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/base.css')}}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Bitcount:wght@100..900&family=Oswald:wght@200..700&display=swap" >
+
+    {% block extra_head %}{% endblock %}
+
 </head>
 <body>
     <nav>
@@ -15,7 +19,9 @@
         <a href="{{url_for('orderitem.index')}}">OrderItem</a>
     </nav>
 
-    {% block header %}{% endblock %}
+    <div class="header_wrapper">{% block header %}{% endblock %}</div>
+
+    {% block form %}{% endblock %}
     
     {% block content %}{% endblock %}
     

@@ -1,0 +1,33 @@
+.form_wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.search_form input, 
+.search_form select,
+.search_form button {
+    height: 40px;
+    box-sizing: border-box;
+    line-height: 1;
+}
+
+.search_form input,
+.search_form select {
+    background-color: red;
+    border: 5px solid yellow;
+    border-radius: 5px;
+    font-family: "Bitcount", system-ui; 
+    font-size: 20px;
+}
+
+.search_form input::placeholder {
+    color: black;
+}
+
+
+.search_form button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 30px;
+}

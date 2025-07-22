@@ -1,0 +1,22 @@
+.btn_wrapper {
+    display: flex;
+    justify-content: center;
+    height: calc(100vh - 80px);
+}
+#index_btn {
+    margin-top: calc((100vh - 80px) * 0.3);
+    width: 400px;
+    height: 120px;
+    background-color: red;
+    color: rgb(250, 209, 27);
+    border: 5px solid yellow;
+    border-radius:12px;
+    cursor: pointer;
+    font-family: "Bitcount", system-ui;
+    font-size: 100px;
+    transition: color 0.3s ease;
+}
+
+#index_btn:hover {
+    color: yellow;
+}

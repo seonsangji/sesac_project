@@ -1,0 +1,43 @@
+body {
+    font-family: 'Huninn', sans-serif;
+    background-color: rgb(250, 209, 27);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    background-color: red;
+    height: 80px;
+    border: none;
+    border-bottom : 5px solid yellow;
+}
+
+nav a {
+    font-size: 48px;
+    color: rgb(250, 209, 27);
+    text-decoration: none;
+    font-family: "Bitcount", system-ui;
+    font-variation-settings:
+    "slnt" 0,
+    "CRSV" 0.5,
+    "ELSH" 100,
+    "ELXP" 0;
+}
+
+nav a:hover{
+    text-decoration: underline;
+    color: yellow
+}
+
+.header_wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+
+h2 {
+    font-size: 52px;
+    font-family: "Bitcount", system-ui;
+}
