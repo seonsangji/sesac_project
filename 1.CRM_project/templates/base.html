@@ -19,12 +19,18 @@
         <a href="{{url_for('orderitem.index')}}">OrderItem</a>
     </nav>
 
-    <div class="header_wrapper">{% block header %}{% endblock %}</div>
+    <div class="header_wrapper">
+        {% block header %}{% endblock %}
+    </div>
 
     {% block form %}{% endblock %}
     
-    {% block content %}{% endblock %}
+    <div class="content_wrapper">
+        {% block content %}{% endblock %}
+    </div>
     
-    {% block pagination %}{% endblock %}
+    <div class="pagination_wrapper">
+        {% block pagination %}{% endblock %}
+    </div>    
 </body>
 </html>

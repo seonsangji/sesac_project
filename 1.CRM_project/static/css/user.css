@@ -6,18 +6,27 @@
 .search_form input, 
 .search_form select,
 .search_form button {
-    height: 40px;
+    height: 70px;
     box-sizing: border-box;
     line-height: 1;
 }
 
 .search_form input,
 .search_form select {
+    margin: 5px;
     background-color: red;
     border: 5px solid yellow;
     border-radius: 5px;
     font-family: "Bitcount", system-ui; 
-    font-size: 20px;
+    font-size: 32px;
+}
+
+.search_form input {
+    width: 500px;
+}
+
+.search_form select {
+    width: 150px;
 }
 
 .search_form input::placeholder {
@@ -26,8 +35,15 @@
 
 
 .search_form button {
+    height: 50px;
     border: none;
     background: none;
     cursor: pointer;
-    font-size: 30px;
+    font-size: 40px;
+    transition: transform 0.2 ease;
 }
+
+.search_form button:hover {
+    transform: scale(1.2);
+}
+

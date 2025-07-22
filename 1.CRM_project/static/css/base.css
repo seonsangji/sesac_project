@@ -1,5 +1,5 @@
 body {
-    font-family: 'Huninn', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(250, 209, 27);
 }
 
@@ -38,6 +38,66 @@ nav a:hover{
 
 
 h2 {
-    font-size: 52px;
+    font-size: 64px;
     font-family: "Bitcount", system-ui;
+}
+
+.content_wrapper {
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    width: 1000px;
+    border: 5px solid yellow;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+/* thead {
+    display: table;
+    width: 100%;
+}
+.scroll_body {
+    height: 100px;
+} */
+
+th {
+    padding: 15px;
+    border-bottom: 4px solid yellow;
+    background-color: red;
+    color:rgb(250, 209, 27);
+    font-family: "Bitcount", system-ui;
+    font-size: 30px
+}
+
+td {
+    padding: 10px;
+    border-bottom: 2px solid yellow;
+    background-color: rgb(250, 209, 27);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+a:not(nav a){
+    color: yellow;
+    text-decoration: none;
+}
+
+a:hover:not(nav a) {
+    color: black;
+}
+
+a:visited:not(nav a) {
+    color: grey;
+}
+
+a:visited:hover:not(nav a) {
+    color: black;
+}
+
+.pagination_wrapper {
+    display: flex;
+    justify-content: center;
 }

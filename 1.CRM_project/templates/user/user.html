@@ -5,6 +5,7 @@
 {% block extra_head %}
 {{ super() }}
     <link rel="stylesheet" href="{{url_for('static', filename='css/user.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/table.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" >
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Bitcount:wght@100..900&family=Oswald:wght@200..700&display=swap" >
 {% endblock %}
@@ -30,29 +31,34 @@
 {% endblock %}
 
 {% block content %}
-    <table border = 1>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Gender</th>
-            <th>Age</th>
-            <th>Birthdate</th>
-            <th>Address</th>
-        </tr>
-        {% for user in users %}
-        <tr>
-            <th>
-                <a href="{{url_for('user.get_user_detail', userId=user.Id)}}">
-                    {{user.Id}}
-                </a>
-            </th>
-            <th>{{user.Name}}</th>
-            <th>{{user.Gender}}</th>
-            <th>{{user.Age}}</th>
-            <th>{{user.Birthdate}}</th>
-            <th>{{user.Address}}</th>
-        </tr>
-        {% endfor %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Birthdate</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody class="scroll_body">
+            {% for user in users %}
+            <tr>
+                <td>
+                    <a href="{{url_for('user.get_user_detail', userId=user.Id)}}">
+                        {{user.Id}}
+                    </a>
+                </td>
+                <td>{{user.Name}}</td>
+                <td>{{user.Gender}}</td>
+                <td>{{user.Age}}</td>
+                <td>{{user.Birthdate}}</td>
+                <td>{{user.Address}}</td>
+            </tr>
+            {% endfor %}
+        
+        </tbody>
     </table>
 {% endblock %}
 
@@ -61,9 +67,9 @@
 {% block pagination %}
     <div>
     {% if 1<page_now <= total_page %}
-        <a href="{{url_for('user.index', page=page_now -1)}}">Previous</a>
+        <a href="{{url_for('user.index', page=page_now -1)}}"><</a>
     {% else %}
-        Previous
+        <
     {% endif %}
     
     {% if page_now <= 2 %}
@@ -84,9 +90,9 @@
     {% endfor %}
 
     {% if page_now < total_page %}
-        <a href="{{url_for('user.index', page=page_now+1)}}">Next</a>
+        <a href="{{url_for('user.index', page=page_now+1)}}">></a>
     {% else %}
-        Next
+        >
     {% endif %}
     </div>
 {% endblock %}

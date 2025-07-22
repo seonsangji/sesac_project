@@ -17,5 +17,9 @@ app.register_blueprint(orderitem_bp, url_prefix="/orderitem")
 def home():
     return render_template('index.html')
 
+@app.route('/add')
+def start():
+    return render_template('add/add.html')
+
 if __name__ == "__main__":
     app.run(debug=True)

@@ -28,9 +28,9 @@
 {% block pagination %}
     <div>
         {% if 1 < page_now <= total_page %}
-            <a href="{{url_for('orderitem.index', page=page_now+1)}}">Previous</a>
+            <a href="{{url_for('orderitem.index', page=page_now+1)}}"><</a>
         {% else %}
-            Previous
+            <
         {% endif %}
 
         {% if page_now <= 2 %}
@@ -51,9 +51,9 @@
         {% endfor %}
 
         {% if 1 <= page_now < total_page %}
-            <a href="{{url_for('orderitem.index', page=page_now+1)}}">Next</a>
+            <a href="{{url_for('orderitem.index', page=page_now+1)}}">></a>
         {% else %}
-            Next
+            >
         {% endif %}
 
     </div>
