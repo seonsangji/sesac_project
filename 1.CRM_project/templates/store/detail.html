@@ -2,25 +2,44 @@
 
 {% block title %}store detail{% endblock %}
 
-{% block header %}<h2>store detail </h2>{% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/detail.css')}}">
+{% endblock %}
+
+{% block header %}
+<div class="store_detail_header">
+    <div class="back_wrapper">
+        <a href="{{url_for('store.index')}}">
+            < back  
+        </a>
+    </div>
+    <h2 class="header_name">store detail</h2>
+</div>
+{% endblock %}
+
+
+
 
 {% block content %}
-    <table>
-        <tr>
-            {% for key,value in store.items() %}
-                {% if key != 'Id' %}
-                    <th>{{key}}</th>
-                {% endif %}
-            {% endfor %}
-        </tr>
-        <tr>
-            {% for key,value in store.items() %}
-                {% if key != 'Id' %}
-                    <td>{{value}}</td>
-                {% endif %}
-            {% endfor %}
-        </tr>
-    </table>
+    <div table="detail_table_wrapper">
+        <table>
+            <tr>
+                {% for key,value in store.items() %}
+                    {% if key != 'Id' %}
+                        <th>{{key}}</th>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for key,value in store.items() %}
+                    {% if key != 'Id' %}
+                        <th>{{value}}</th>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        </table>
+    
+
 
 
     <table>
@@ -50,10 +69,12 @@
         </tr>
         {% for user in users %}
         <tr>
-            <th><a href="{{url_for('user.get_user_detail', userId=user.UserId)}}">{{user.UserId}}</a></th>
-            <th>{{user.UserName}}</th>
-            <th>{{user.Frequency}}</th>
+            <td><a href="{{url_for('user.get_user_detail', userId=user.UserId)}}">{{user.UserId}}</a></td>
+            <td>{{user.UserName}}</td>
+            <td>{{user.Frequency}}</td>
         </tr>
         {% endfor %}
     </table>
+
+    </div>
 {% endblock %}

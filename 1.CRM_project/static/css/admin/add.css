@@ -1,0 +1,13 @@
+.add_table {
+    width: 800px;
+    height: 620px;
+}
+
+.add_table td {
+    font-family: "Bitcount", system-ui;
+    font-size: 40px;
+}
+
+.add_table button {
+    font-size: 64px;
+}

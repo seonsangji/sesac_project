@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect
+from flask import Blueprint, render_template, jsonify
 from . import database as db
 
 item_bp = Blueprint('item', __name__, template_folder='../templates/item')
@@ -12,7 +12,8 @@ def index():
 def get_item_detail(itemId):
     item_dict = db.get_item_info(itemId)
     rev_dict = db.get_item_rev(itemId)
-    return render_template('item/detail.html', item=item_dict, rev=rev_dict)
-
-
+    month = [ d['Month'] for d in rev_dict ]
+    rev_data = [ d['TotalRevenue'] for d in rev_dict]
+    count = [ d['ItemCount'] for d in rev_dict]
+    return render_template('item/detail.html', item=item_dict, rev=rev_dict, month=month, rev_data=rev_data, count=count)
     

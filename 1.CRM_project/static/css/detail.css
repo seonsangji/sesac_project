@@ -1,0 +1,27 @@
+.detail_table_wrapper {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.store_detail_header {
+    margin-top:100px;
+    border: 1px solid green;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.back_wrapper {
+    margin-top: 40px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    height: 30px;
+    font-size:30px;
+}
+
+.header_name {
+    margin-top: 30px;
+}

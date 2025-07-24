@@ -2,27 +2,33 @@
 
 {% block title %}item detail{% endblock %}
 
-{% block header %}<h2>item detail </h2>{% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/detail.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block header %}<h2>item detail</h2>{% endblock %}
 
 {% block content %}
-    <table>
-        <tr>
-            {% for key, value in item.items() %}
-                {% if key == 'Name' or key == 'UnitPrice' %}
-                    <th>{{key}}</th>
-                {% endif %}
-            {% endfor %}
-        </tr>
-        <tr>
-            {% for key, value in item.items() %}
-                {% if key == 'Name' or key == 'UnitPrice' %}
-                    <th>{{value}}</th>
-                {% endif %}
-            {% endfor %}
-        </tr>
-    </table>
-    <br>
-    <table>
+    <div class="detail_table_wrapper">
+        <table>
+            <tr>
+                {% for key, value in item.items() %}
+                    {% if key == 'Name' or key == 'UnitPrice' %}
+                        <th>{{key}}</th>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for key, value in item.items() %}
+                    {% if key == 'Name' or key == 'UnitPrice' %}
+                        <th>{{value}}</th>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        </table>
+        
+        <table>
             <tr>
                 <th>Month</th>
                 <th>Total Revenue</th>
@@ -35,5 +41,20 @@
                 {% endfor %}
             </tr>
             {% endfor %}
-    </table>
+        </table>
+    </div>
+
+    <div class="item_chart">
+        <canvas id="item_chart"></canvas>
+    </div>
+
+{% endblock %}
+
+{% block extra_script %}
+    <script>
+        const labels = {{ month | tojson }};
+        const revenue =  {{ rev_data | tojson }};
+        const count = {{ count | tojson }};
+    </script>
+    <script src="{{url_for('static', filename='script/item.js') }}"></script>
 {% endblock %}

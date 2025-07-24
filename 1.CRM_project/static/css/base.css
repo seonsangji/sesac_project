@@ -40,26 +40,35 @@ nav a:hover{
 }
 
 .header_wrapper {
+    border: 1px solid blue;
     margin-top: 0px;
     display: flex;
     justify-content: center;
+    font-family: "Bitcount", system-ui;
 }
 
 
 h2 {
+    border: 1px solid blue;
     margin-top: 200px;
     font-size: 64px;
-    font-family: "Bitcount", system-ui;
+
 }
 
 .content_wrapper {
-    border: 1px solid blue;
+    border: 5px solid purple;
+    display: flex;
+    justify-content: center;
+}
+
+.table_wrapper {
+    border: 5px solid green;
     display: flex;
     justify-content: center;
 }
 
 table {
-    width: 1000px;
+    width: 1200px;
     border: 5px solid yellow;
     border-collapse: collapse;
     text-align: center;
@@ -76,26 +85,27 @@ th {
 
 td {
     padding: 10px;
+    height: 40px;
     border-bottom: 2px solid yellow;
     background-color: rgb(250, 209, 27);
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
+    font-size: 22px;
 }
 
-a:not(nav a):not(.pagination a){
-    color: yellow;
+a:not(nav a):not(.pagination a):not(.back_wrapper a):not(th a) {
+    color: red;
     text-decoration: none;
 }
 
 a:hover:not(nav a):not(.pagination a) {
-    color: black;
+    color: yellow;
 }
 
-a:visited:not(nav a):not(.pagination a) {
+a:visited:not(nav a):not(.pagination a):not(.back_wrapper a) {
     color: grey;
 }
 
-a:visited:hover:not(nav a):not(.pagination a) {
+a:visited:hover:not(nav a):not(.pagination a):not(.back_wrapper a) {
     color: black;
 }
 
@@ -103,7 +113,6 @@ a:visited:hover:not(nav a):not(.pagination a) {
     display: flex;
     justify-content: center;
     border: 1px solid blue;
-    height: 500px;
 }
 
 .pagination {
@@ -127,5 +136,23 @@ a:visited:hover:not(nav a):not(.pagination a) {
     color: yellow;
 }
 
+th a {
+    color: black;
+    text-decoration: none;
+}
 
+th a:hover {
+    color: yellow;
+}
+
+
+.back_wrapper a{
+    color: black;
+    text-decoration: none;
+}저는 뾰루지가 잘 안나요 !
+
+그리고 저는 커피를 좋아하는데, 카페인을 먹으면
+심장이 폴짝폴짝 심장이 꿀렁꾸ㄹ 러어엉
+
+그리고 저는 아아아아아 ! 부끄 러 워 !!!!
 

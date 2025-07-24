@@ -3,21 +3,51 @@
 {% block title %} user {% endblock %}
 
 {% block extra_head %}
-{{ super() }}
-    <link rel="stylesheet" href="{{url_for('static', filename='css/user.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/table.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/common/form.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" >
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&family=Bitcount:wght@100..900&family=Oswald:wght@200..700&display=swap" >
 {% endblock %}
 
 
-{% block header %}<h2>user </h2>{% endblock %}
+{% block header %}<h2>user</h2>{% endblock %}
 
 
 
 
+
+{% block content %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Birthdate</th>
+            <th>Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>
+                <a href="{{url_for('user.get_user_detail', userId=user.Id)}}">
+                    {{user.Id}}
+                </a>
+                </td>
+                <td>{{user.Name}}</td>
+                <td>{{user.Gender}}</td>
+                <td>{{user.Age}}</td>
+                <td>{{user.Birthdate}}</td>
+                <td>{{user.Address}}</td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+    {% endblock %}
+    
 {% block form %}
-    <div class="form_wrapper">
         <form class='search_form' action="{{url_for('user.search_user')}}">
             <input type="text" name="name" placeholder=" search user" value="{{name}}">
             <select name="gender" value="{{gender}}">
@@ -27,44 +57,10 @@
             </select>
             <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
-    </div>
 {% endblock %}
-
-{% block content %}
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Gender</th>
-                <th>Age</th>
-                <th>Birthdate</th>
-                <th>Address</th>
-            </tr>
-        </thead>
-        <tbody class="scroll_body">
-            {% for user in users %}
-            <tr>
-                <td>
-                    <a href="{{url_for('user.get_user_detail', userId=user.Id)}}">
-                        {{user.Id}}
-                    </a>
-                </td>
-                <td>{{user.Name}}</td>
-                <td>{{user.Gender}}</td>
-                <td>{{user.Age}}</td>
-                <td>{{user.Birthdate}}</td>
-                <td>{{user.Address}}</td>
-            </tr>
-            {% endfor %}
-        
-        </tbody>
-    </table>
-{% endblock %}
-
-
-
-{% block pagination %}
+    
+    
+    {% block pagination %}
     <div class="pagination">
         {% if 1<page_now <= total_page %}
             <a href="{{url_for('user.index', page=page_now -1)}}"><</a>

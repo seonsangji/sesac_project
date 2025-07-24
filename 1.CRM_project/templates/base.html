@@ -25,14 +25,18 @@
         {% block header %}{% endblock %}
     </div>
 
-    {% block form %}{% endblock %}
-    
     <div class="content_wrapper">
         {% block content %}{% endblock %}
     </div>
     
+    <div class="form_wrapper">
+        {% block form %}{% endblock %}
+    </div>
+
     <div class="pagination_wrapper">
         {% block pagination %}{% endblock %}
-    </div>    
+    </div>
+    
+    {% block extra_script %}{% endblock %}
 </body>
 </html>

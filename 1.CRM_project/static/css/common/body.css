@@ -1,0 +1,70 @@
+.header_wrapper {
+    border: 1px solid blue;
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+    font-family: "Bitcount", system-ui;
+}
+
+
+h2 {
+    border: 1px solid blue;
+    margin-top: 200px;
+    font-size: 64px;
+
+}
+
+.content_wrapper {
+    border: 3px solid green;
+    display: flex;
+    justify-content: center;
+}
+
+.table_wrapper {
+    border: 1px solid blue;
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    width: 1200px;
+    border: 5px solid yellow;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th {
+    padding: 15px;
+    border-bottom: 4px solid yellow;
+    background-color: red;
+    color:rgb(250, 209, 27);
+    font-family: "Bitcount", system-ui;
+    font-size: 30px
+}
+
+td {
+    padding: 10px;
+    height: 40px;
+    border-bottom: 2px solid yellow;
+    background-color: rgb(250, 209, 27);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 22px;
+}
+
+.pagination_wrapper {
+    display: flex;
+    justify-content: center;
+    border: 1px solid blue;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    border: 1px solid black;
+    width: 400px;
+    height: 100px;
+    gap: 10px;
+    font-size: 45px;
+    font-family: "Bitcount", system-ui;
+}

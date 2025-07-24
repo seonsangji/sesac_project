@@ -2,45 +2,52 @@
 
 {% block title %}user detail {% endblock %}
 
-{% block header %}user detail page{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/detail.css')}}">    
+{% endblock %}
+
+
+{% block header %}<h2>user detail</h2>{% endblock %}
 
 {% block content %}
-    <table>
-        <tr>
-            {% for key, value in user.items() %}
-                {% if key != 'Id' %}
-                    <th>{{key}}</th>
-                {% endif %}
+    <div class="detail_content_wrapper">
+        <table>
+            <tr>
+                {% for key, value in user.items() %}
+                    {% if key != 'Id' %}
+                        <th>{{key}}</th>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for key, value in user.items() %}
+                    {% if key != 'Id' %}
+                        <th>{{value}}</th>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        </table>
+        <br>
+        <table>
+            <tr>
+                <th>OrderId</th>
+                <th>Purchased Date</th>
+                <th>Purchased Location</th>
+            </tr>
+            {% for order in orders %}
+            <tr>
+                <td>
+                    <a href="{{url_for('orderitem.get_orderitem_detail', orderId=order.Id)}}">{{order.Id}}</a>
+                </td>
+                <td>{{order.OrderAt}}</td>
+                <td>
+                    <a href="{{url_for('store.get_store_detail', storeId=order.StoreId)}}">
+                        {{order.StoreId}}</a>
+                </td>
+            </tr>
             {% endfor %}
-        </tr>
-        <tr>
-            {% for key, value in user.items() %}
-                {% if key != 'Id' %}
-                    <td>{{value}}</td>
-                {% endif %}
-            {% endfor %}
-        </tr>
-    </table>
-    <br>
-    <table>
-        <tr>
-            <th>OrderId</th>
-            <th>Purchased Date</th>
-            <th>Purchased Location</th>
-        </tr>
-        {% for order in orders %}
-        <tr>
-            <td>
-                <a href="{{url_for('orderitem.get_orderitem_detail', orderId=order.Id)}}">{{order.Id}}</a>
-            </td>
-            <td>{{order.OrderAt}}</td>
-            <td>
-                <a href="{{url_for('store.get_store_detail', storeId=order.StoreId)}}">
-                    {{order.StoreId}}</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
+        </table>
+    
 
     <h3>자주 방문한 매장 Top 5</h3>
     <ul>
@@ -61,4 +68,6 @@
             </li>
         {% endfor %}
     </ul>
+
+    </div>
 {% endblock %}
