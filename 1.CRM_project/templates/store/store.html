@@ -2,7 +2,7 @@
 
 {% block title %} stores {% endblock %}
 
-{% block header %}<h2>store page</h2>{% endblock %}
+{% block header %}<h2>store </h2>{% endblock %}
 
 
 {% block content %}                    
@@ -27,7 +27,7 @@
     
 
 {% block pagination %}
-    <div>
+    <div class="pagination">
             
     {% if 1<page_now <= total_page %}
         <a href="{{url_for('store.index', page=page_now -1)}}"><</a>

@@ -2,7 +2,7 @@
 
 {% block title %}orderitem{% endblock %}
 
-{% block header %}<h2>orderitem page</h2>{% endblock %}
+{% block header %}<h2>orderitem </h2>{% endblock %}
 
 {% block content %}
     <table>
@@ -26,7 +26,7 @@
 {% endblock %}
 
 {% block pagination %}
-    <div>
+    <div class="pagination">
         {% if 1 < page_now <= total_page %}
             <a href="{{url_for('orderitem.index', page=page_now+1)}}"><</a>
         {% else %}

@@ -3,12 +3,20 @@ body {
     background-color: rgb(250, 209, 27);
 }
 
+.nav_wrapper {
+    position: fixed;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
 nav {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 32px;
     background-color: red;
+    width: 100vw;
     height: 80px;
     border: none;
     border-bottom : 5px solid yellow;
@@ -32,18 +40,20 @@ nav a:hover{
 }
 
 .header_wrapper {
+    margin-top: 0px;
     display: flex;
     justify-content: center;
 }
 
 
 h2 {
+    margin-top: 200px;
     font-size: 64px;
     font-family: "Bitcount", system-ui;
 }
 
 .content_wrapper {
-    padding-top: 30px;
+    border: 1px solid blue;
     display: flex;
     justify-content: center;
 }
@@ -54,14 +64,6 @@ table {
     border-collapse: collapse;
     text-align: center;
 }
-
-/* thead {
-    display: table;
-    width: 100%;
-}
-.scroll_body {
-    height: 100px;
-} */
 
 th {
     padding: 15px;
@@ -80,24 +82,50 @@ td {
     font-size: 18px;
 }
 
-a:not(nav a){
+a:not(nav a):not(.pagination a){
     color: yellow;
     text-decoration: none;
 }
 
-a:hover:not(nav a) {
+a:hover:not(nav a):not(.pagination a) {
     color: black;
 }
 
-a:visited:not(nav a) {
+a:visited:not(nav a):not(.pagination a) {
     color: grey;
 }
 
-a:visited:hover:not(nav a) {
+a:visited:hover:not(nav a):not(.pagination a) {
     color: black;
 }
 
 .pagination_wrapper {
     display: flex;
     justify-content: center;
+    border: 1px solid blue;
+    height: 500px;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    border: 1px solid black;
+    width: 400px;
+    height: 100px;
+    gap: 10px;
+    font-size: 45px;
+    font-family: "Bitcount", system-ui;
+}
+
+.pagination a {
+    color: black;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    color: yellow;
+}
+
+
+

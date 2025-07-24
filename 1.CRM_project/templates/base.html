@@ -11,13 +11,15 @@
 
 </head>
 <body>
-    <nav>
-        <a href="{{url_for('user.index')}}">User</a>
-        <a href="{{url_for('store.index')}}">Store</a>
-        <a href="{{url_for('item.index')}}">Item</a>
-        <a href="{{url_for('order.index')}}">Order</a>
-        <a href="{{url_for('orderitem.index')}}">OrderItem</a>
-    </nav>
+    <div class="nav_wrapper">
+        <nav>
+            <a href="{{url_for('user.index')}}">User</a>
+            <a href="{{url_for('store.index')}}">Store</a>
+            <a href="{{url_for('item.index')}}">Item</a>
+            <a href="{{url_for('order.index')}}">Order</a>
+            <a href="{{url_for('orderitem.index')}}">OrderItem</a>
+        </nav>
+    </div>
 
     <div class="header_wrapper">
         {% block header %}{% endblock %}

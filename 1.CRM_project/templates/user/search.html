@@ -2,7 +2,7 @@
 
 {% block title %}search{% endblock %}
 
-{% block header %}<h2>user page</h2>{% endblock %}
+{% block header %}<h2>user </h2>{% endblock %}
 
 {% block content %}
     <form action="{{url_for('user.search_user')}}">
@@ -43,7 +43,7 @@
 
 
 {% block pagination %}
-    <div>
+    <div class="pagination">
         {% if 1 < page_now <= total_page %}
             <a href="{{url_for('user.search_user', name=name, gender=gender, page=page_now -1)}}"><</a>
         {% else %}

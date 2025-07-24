@@ -1,6 +1,8 @@
 .form_wrapper {
+    border: 1px solid blue;
     display: flex;
     justify-content: center;
+    margin-bottom: 30px;
 }
 
 .search_form input, 
