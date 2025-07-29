@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, jsonify
+from flask import Blueprint, render_template
 from . import database as db
 
 item_bp = Blueprint('item', __name__, template_folder='../templates/item')

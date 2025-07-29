@@ -10,7 +10,7 @@
 
 {% block content %}
     <div class = btn_wrapper>
-        <form class="start_add_form"action="{{url_for('start')}}">
+        <form class="start_add_form" action="{{url_for('join.create_account',today=today)}}">
             <button id="index_btn">Order Yours</button>
         </form>
     </div>

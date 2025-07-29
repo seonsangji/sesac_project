@@ -25,16 +25,21 @@ def get_users():
     cur.close()
     return total
 
-def get_users_per_page(page, limit):
-    offset = ( page - 1 ) * limit
+def get_users_per_page(page, limit):   
     conn = get_connection()
     cur = conn.cursor()
-    cur.execute('SELECT * FROM users LIMIT ? OFFSET ? ', (limit, offset))
-    rows = cur.fetchall()
-    users = [ dict(r) for r in rows ]
-    cur.close()
-    return users
-
+    if page == 1:
+        cur.execute('SELECT * FROM users LIMIT ?', (limit,))
+        rows = cur.fetchall()
+        cur.close()
+        return [ dict(r) for r in rows ]
+    elif page > 1:
+        offset = ( page - 1 ) * limit
+        cur.execute('SELECT * FROM users LIMIT ? OFFSET ? ', (limit, offset))
+        rows = cur.fetchall()
+        cur.close()
+        return [ dict(r) for r in rows ]
+    
 def search_name_from_front(name):
     conn = get_connection()
     cur = conn.cursor()

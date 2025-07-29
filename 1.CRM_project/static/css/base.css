@@ -40,7 +40,6 @@ nav a:hover{
 }
 
 .header_wrapper {
-    border: 1px solid blue;
     margin-top: 0px;
     display: flex;
     justify-content: center;
@@ -49,20 +48,17 @@ nav a:hover{
 
 
 h2 {
-    border: 1px solid blue;
     margin-top: 200px;
     font-size: 64px;
 
 }
 
 .content_wrapper {
-    border: 5px solid purple;
     display: flex;
     justify-content: center;
 }
 
 .table_wrapper {
-    border: 5px solid green;
     display: flex;
     justify-content: center;
 }
@@ -112,14 +108,12 @@ a:visited:hover:not(nav a):not(.pagination a):not(.back_wrapper a) {
 .pagination_wrapper {
     display: flex;
     justify-content: center;
-    border: 1px solid blue;
 }
 
 .pagination {
     display: flex;
     justify-content: center;
     margin-top: 40px;
-    border: 1px solid black;
     width: 400px;
     height: 100px;
     gap: 10px;
@@ -136,6 +130,10 @@ a:visited:hover:not(nav a):not(.pagination a):not(.back_wrapper a) {
     color: yellow;
 }
 
+.pagination a:hover {
+    font-size: 47.5px
+}
+
 th a {
     color: black;
     text-decoration: none;
@@ -149,10 +147,4 @@ th a:hover {
 .back_wrapper a{
     color: black;
     text-decoration: none;
-}저는 뾰루지가 잘 안나요 !
-
-그리고 저는 커피를 좋아하는데, 카페인을 먹으면
-심장이 폴짝폴짝 심장이 꿀렁꾸ㄹ 러어엉
-
-그리고 저는 아아아아아 ! 부끄 러 워 !!!!
-
+}

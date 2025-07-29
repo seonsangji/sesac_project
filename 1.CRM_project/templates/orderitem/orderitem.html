@@ -26,35 +26,5 @@
 {% endblock %}
 
 {% block pagination %}
-    <div class="pagination">
-        {% if 1 < page_now <= total_page %}
-            <a href="{{url_for('orderitem.index', page=page_now+1)}}"><</a>
-        {% else %}
-            <
-        {% endif %}
-
-        {% if page_now <= 2 %}
-            {% set start = 1 %}
-            {% set stop = 6 %}
-        {% elif (page_now == total_page) or (page_now == total_page-1) %}
-            {% set start = total_page-4 %}
-            {% set stop = total_page+1 %}
-        {% else %}
-            {% set start = page_now-2 %}
-            {% set stop = page_now+3 %}
-        {% endif %}
-        
-        {% for i in range(start,stop) %}
-            {% if 1 <= i <= total_page+1 %}
-                <a href="{{url_for('orderitem.index', page=i)}}">{{i}}</a>
-            {% endif %}
-        {% endfor %}
-
-        {% if 1 <= page_now < total_page %}
-            <a href="{{url_for('orderitem.index', page=page_now+1)}}">></a>
-        {% else %}
-            >
-        {% endif %}
-
-    </div>
+    {% include 'components/pagination.html' %}
 {% endblock %}

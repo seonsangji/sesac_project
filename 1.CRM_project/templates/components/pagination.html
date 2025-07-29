@@ -1,0 +1,29 @@
+<div class="pagination">
+    {% set pagination_args = query_args.copy() %}
+
+    {% if 1 < page_now <= total_page %}
+    {% set _ = pagination_args.update({'page': page_now - 1}) %}
+        <a href="{{url_for(view_name, **pagination_args)}}"><</a>
+    {% else %}
+        <
+    {% endif %}       
+
+    
+    {% for i in range(start,stop+1) %}
+        {% if 0 < i <= total_page %}
+        {% set _ = pagination_args.update({'page': i}) %}
+            {% if i == page_now %}
+                <a href="{{url_for(view_name, **pagination_args)}}" class="active">{{i}}</a>
+            {% else %}
+                <a href="{{url_for(view_name, **pagination_args)}}">{{i}}</a>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    {% if page_now < total_page %}
+    {% set _ = pagination_args.update({'page': page_now + 1}) %}
+        <a href="{{url_for(view_name, **pagination_args)}}">></a>
+    {% else %}
+        >
+    {% endif %}
+</div>

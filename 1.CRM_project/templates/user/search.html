@@ -4,7 +4,7 @@
 
 {% block extra_head %}
     <link rel="stylesheet" href="{{url_for('static', filename='css/detail.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/common/form.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/form.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" >
 {% endblock %}
 
@@ -41,10 +41,10 @@
 {% block form %}
     <form action="{{url_for('user.search_user')}}">
         <input type="text" name="name" placeholder="search user" value="{{name}}">
-        <select name="gender" value="{{gender}}">
-            <option value="" disabled selected>gender</option>
-            <option value="male">male</option>
-            <option value="female">female</option>
+        <select name="gender">
+            <option value="" {% if not gender %}selected{% endif %}>gender</option>
+            <option value="male" {% if gender == 'male' %}selected{% endif %}>male</option>
+            <option value="female" {% if gender == 'female' %}selected{% endif %}>female</option>
         </select>
         <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
@@ -52,34 +52,5 @@
 
 
 {% block pagination %}
-    <div class="pagination">
-        {% if 1 < page_now <= total_page %}
-            <a href="{{url_for('user.search_user', name=name, gender=gender, page=page_now -1)}}"><</a>
-        {% else %}
-            <
-        {% endif %}
-
-        {% if page_now <= 2 %}
-            {% set start=1 %}
-            {% set stop=6 %}
-        {% elif total_page-1 <= page_now <=total_page %}
-            {% set start=total_page-4 %}
-            {% set stop=total_page %}
-        {% else %}
-            {% set start=page_now-2 %}
-            {% set stop=page_now+3 %}
-        {% endif %}               
-
-        {% for i in range(start,stop) %}
-            {% if 0<i<=total_page+1 %}
-                <a href="{{url_for('user.search_user', name=name, gender=gender, page=i)}}">{{i}}</a>
-            {% endif %}
-        {% endfor %}
-
-        {% if page_now < total_page %}
-            <a href="{{url_for('user.search_user', name=name, gender=gender,page=page_now+1)}}">></a>
-        {% else %}
-            >
-        {% endif %}
-    </div>
+    {% include 'components/pagination.html' %}
 {% endblock %}

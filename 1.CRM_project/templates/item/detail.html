@@ -27,7 +27,7 @@
                 {% endfor %}
             </tr>
         </table>
-        
+            
         <table>
             <tr>
                 <th>Month</th>
@@ -42,19 +42,19 @@
             </tr>
             {% endfor %}
         </table>
-    </div>
-
-    <div class="item_chart">
-        <canvas id="item_chart"></canvas>
+        <div class="item_chart">
+            <canvas id="item_chart"></canvas>
+        </div>
     </div>
 
 {% endblock %}
 
 {% block extra_script %}
     <script>
-        const labels = {{ month | tojson }};
-        const revenue =  {{ rev_data | tojson }};
+        const month = {{ month | tojson }};
+        const rev_data =  {{ rev_data | tojson }};
         const count = {{ count | tojson }};
     </script>
     <script src="{{url_for('static', filename='script/item.js') }}"></script>
+    
 {% endblock %}

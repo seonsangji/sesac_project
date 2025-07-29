@@ -2,7 +2,7 @@
 
 {% block title %}order{% endblock %}
 
-{% block header %}<h2>order </h2>{% endblock %}
+{% block header %}<h2>order</h2>{% endblock %}
 
 {% block content %}
     <table>
@@ -28,34 +28,5 @@
 {% endblock %}
 
 {% block pagination %}
-<div class="pagination">
-    {% if 1<page_now<=total_page %}
-        <a href="{{url_for('order.index', page=page_now -1)}}"><</a>
-    {% else %}
-        <
-    {% endif %}
-    
-    {% if page_now <= 2 %}
-        {% set start=1 %}
-        {% set stop=6 %}
-    {% elif total_page-1<=page_now==total_page %}
-        {% set start=total_page-4 %}
-        {% set stop=total_page %}
-    {% else %}
-        {% set start=page_now-2 %}
-        {% set stop=page_now+3 %}
-    {% endif %}
-            
-    {% for i in range(start,stop) %}
-        {% if 0<i<=total_page %}
-            <a href="{{url_for('order.index', page=i)}}">{{i}}</a>
-        {% endif %}
-    {% endfor %}
-           
-    {% if page_now < total_page %}
-        <a href="{{url_for('order.index', page=page_now+1)}}">></a>
-    {% else %}
-        >
-    {% endif %}
-</div>   
+    {% include 'components/pagination.html' %}
 {% endblock %}

@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from . import database as db
 from common.count_row import count_row_per_page
 from common.get_page import get_page_now
+from common.set_pagination import set_pagination
 
 user_bp = Blueprint('user', __name__, template_folder='../templates/user' )
 
@@ -10,9 +11,30 @@ def index():
     total = db.get_user_count()
     limit = 10
     total_page = count_row_per_page(total, limit) 
-    page_now = get_page_now()   
+    query_args = request.args.to_dict()
+    raw_page = query_args.get('page')
+    page_now = get_page_now()
+
+
+    if (raw_page is None) or ( str(page_now) != raw_page):
+        query_args['page'] = 1
+        return redirect(url_for(request.endpoint, **query_args))
+    print(f"{query_args}에서 page값 삭제 전")
+    query_args.pop('page', None)
+    print(f"{query_args}에서 page값 삭제 후")
+
     users = db.get_users_per_page(page_now, limit)
-    return render_template('user.html', users=users,  total_page=total_page,page_now=page_now)
+    start, stop = set_pagination(page_now, total_page)
+    return render_template(
+        'user.html', 
+        users=users,  
+        total_page=total_page,
+        page_now=page_now,
+        start=start, 
+        stop=stop,
+        query_args = query_args,
+        view_name='user.index'
+        )
 
 @user_bp.route('/search')
 def search_user():
@@ -23,10 +45,9 @@ def search_user():
         search_result = db.search_name_from_front(name) 
     elif len(name) == 2:
         search_result = db.search_name_from_front(name) + db.search_lastname(name)
-        if not search_result:  return redirect(url_for('search_user'))
+        if not search_result:  return redirect(url_for('user.search_user'))
     elif name == '' and gender != '':
-        if not gender: search_result = []
-        elif gender == 'male':
+        if gender == 'male':
             search_result = [r for r in db.get_users() if r['Gender'] == 'Male']
         elif gender == 'female':
             search_result = [r for r in db.get_users() if r['Gender'] == 'Female']
@@ -43,10 +64,31 @@ def search_user():
     search_result_total = len(search_result)
     limit = 10
     total_page = count_row_per_page(search_result_total, limit)
-    page_now = get_page_now()
-    users = search_result[(page_now-1)*limit:page_now*limit]
 
-    return render_template('user/search.html', users = users,  total_page=total_page, page_now=page_now, name=name, gender=gender)
+    query_args = request.args.to_dict()
+    raw_page = query_args.get('page')
+    page_now = get_page_now()
+
+    if (raw_page is None) or ( str(page_now) != raw_page):
+        query_args['page'] = 1
+        return redirect(url_for(request.endpoint, **query_args))
+    print(f"{query_args}에서 page값 삭제 전")
+    query_args.pop('page', None)
+    print(f"{query_args}에서 page값 삭제 후")
+
+    users = search_result[(page_now-1)*limit:page_now*limit]
+    start, stop = set_pagination(page_now, total_page)
+    return render_template(
+        'user/search.html', 
+        users = users,  total_page=total_page, page_now=page_now, 
+        name=name, 
+        gender=gender,
+        start=start,
+        stop=stop,
+        query_args=query_args,
+        view_name='user.search_user'
+            )
+                           
 
 @user_bp.route('/detail/<string:userId>')
 def get_user_detail(userId):

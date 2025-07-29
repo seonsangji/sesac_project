@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block header %}<h2>create your order</h2>{% endblock %}
+
+{% block form %}
+    <div class="form_wrapper">
+        <form class="order_form" action="{{ url_for('join.create_order')}}" method="POST">
+            <table class="add_table">
+                <tr>
+                    <td>store:</td>
+                    <td><input type="text" name="name" placeholder="find store" required></td>
+                </tr>
+                <tr>
+                    <td>gender:</td>
+                    <td>
+                        <select name="gender" required>
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>birthdate:</td>
+                    <td><input type="date" name="birthdate" min="1925-01-01" max="{{today}}" required></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button type="submit"> +Create Account</button></td>
+                </tr>
+            </form>
+        </div>
+{% endblock %}
